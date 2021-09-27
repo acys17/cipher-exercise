@@ -7,8 +7,13 @@ const N = 26; // Might be useful
 const shiftChar = (char, direction) => {
   if (char !== ' ') {
     let int = direction ? charToInt(char) + 2 : charToInt(char) - 2;
-    int >= N ? int -= N : int; // Wrap if needed
-    return (intToChar(int))
+    if (int >= N) {
+      return intToChar(int - N);
+    } else if (int < 0) {
+      return intToChar(int + N);
+    } else {
+      return intToChar(int);
+    }
   } else {
     return char
   }
