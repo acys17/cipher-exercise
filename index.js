@@ -4,9 +4,9 @@ const { charToInt, intToChar } = require('./helpers');
 
 const N = 26; // Might be useful
 
-const shiftChar = char => {
+const shiftChar = (char, direction) => {
   if (char !== ' ') {
-    let int = charToInt(char) + 2;
+    let int = direction ? charToInt(char) + 2 : charToInt(char) - 2;
     int >= N ? int -= N : int; // Wrap if needed
     return (intToChar(int))
   } else {
@@ -17,11 +17,16 @@ const shiftChar = char => {
 const encrypt = message => (
   message
     .split('')
-    .map(shiftChar)
+    .map(char => shiftChar(char, 1))
     .join('')
 );
 
-const decrypt = message => 'IMPLEMENT ME'; // Broken!
+const decrypt = message => (
+  message
+    .split('')
+    .map(char => shiftChar(char, 0))
+    .join('')
+);;
 
 module.exports = {
   decrypt,
