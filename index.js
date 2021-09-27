@@ -31,7 +31,7 @@ const decrypt = (message, numberOfPlaces) => (
     .split('')
     .map(char => shiftChar(char, 0, numberOfPlaces))
     .join('')
-);;
+);
 
 module.exports = {
   decrypt,

@@ -31,23 +31,23 @@ describe('cipher-exercise', () => {
 
   describe('encrypt', () => {
     it('is a function', () => expect(typeof encrypt).toBe('function'));
-    it('that takes 1 parameter', () => expect(encrypt).toHaveLength(1));
+    it('that takes 2 parameters', () => expect(encrypt).toHaveLength(2));
 
     describe('when called', () => {
       let result;
 
       describe('with a simple message', () => {
         beforeEach(() => {
-          result = encrypt(simple.message);
+          result = encrypt(simple.message, 3);
         });
 
         it('returns a string', () => expect(typeof result).toBe('string'));
-        it('in which the letters are shifted by 2', () => expect(result).toBe(simple.shifted));
+        it('in which the letters are shifted by 3', () => expect(result).toBe('def'));
       });
 
       describe('with a tricky message', () => {
         beforeEach(() => {
-          result = encrypt(tricky.message);
+          result = encrypt(tricky.message, 2);
         });
 
         it('returns a string', () => expect(typeof result).toBe('string'));
@@ -56,16 +56,16 @@ describe('cipher-exercise', () => {
 
       describe('with a multi-word message', () => {
         beforeEach(() => {
-          result = encrypt(words.message);
+          result = encrypt(words.message, 5);
         });
 
         it('returns a string', () => expect(typeof result).toBe('string'));
-        it('in which the letters (but NOT spaces) are shifted by 2', () => expect(result).toBe(words.shifted));
+        it('in which the letters (but NOT spaces) are shifted by 5', () => expect(result).toBe('fgh fgh'));
       });
 
       describe('with a complex message', () => {
         beforeEach(() => {
-          result = encrypt(complex.message);
+          result = encrypt(complex.message, 2);
         });
 
         it('returns a string', () => expect(typeof result).toBe('string'));
@@ -76,7 +76,7 @@ describe('cipher-exercise', () => {
 
   describe('decrypt', () => {
     it('is a function', () => expect(typeof decrypt).toBe('function'));
-    it('that takes 1 parameter', () => expect(decrypt).toHaveLength(1));
+    it('that takes 2 parameters', () => expect(decrypt).toHaveLength(2));
 
     describe('when called, reverses the effects of encrypt', () => {
       let result;
@@ -84,7 +84,7 @@ describe('cipher-exercise', () => {
       describe('with a simple message', () => {
         beforeEach(() => {
           result = decrypt(
-            encrypt(simple.message)
+            encrypt(simple.message, 1), 1
           );
         });
 
@@ -94,7 +94,7 @@ describe('cipher-exercise', () => {
       describe('with a tricky message', () => {
         beforeEach(() => {
           result = decrypt(
-            encrypt(tricky.message)
+            encrypt(tricky.message, 5), 5
           );
         });
 
@@ -104,7 +104,7 @@ describe('cipher-exercise', () => {
       describe('with a multi-word message', () => {
         beforeEach(() => {
           result = decrypt(
-            encrypt(words.message)
+            encrypt(words.message, 8), 8
           );
         });
 
@@ -114,7 +114,7 @@ describe('cipher-exercise', () => {
       describe('with a complex message', () => {
         beforeEach(() => {
           result = decrypt(
-            encrypt(complex.message)
+            encrypt(complex.message, 20), 20
           );
         });
 
