@@ -4,9 +4,9 @@ const { charToInt, intToChar } = require('./helpers');
 
 const N = 26; // Might be useful
 
-const shiftChar = (char, direction) => {
+const shiftChar = (char, direction, numberOfPlaces) => {
   if (char !== ' ') {
-    let int = direction ? charToInt(char) + 2 : charToInt(char) - 2;
+    let int = direction ? charToInt(char) + numberOfPlaces : charToInt(char) - numberOfPlaces;
     if (int >= N) {
       return intToChar(int - N);
     } else if (int < 0) {
