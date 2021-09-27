@@ -19,17 +19,17 @@ const shiftChar = (char, direction) => {
   }
 };
 
-const encrypt = message => (
+const encrypt = (message, numberOfPlaces) => (
   message
     .split('')
-    .map(char => shiftChar(char, 1))
+    .map(char => shiftChar(char, 1, numberOfPlaces))
     .join('')
 );
 
-const decrypt = message => (
+const decrypt = (message, numberOfPlaces) => (
   message
     .split('')
-    .map(char => shiftChar(char, 0))
+    .map(char => shiftChar(char, 0, numberOfPlaces))
     .join('')
 );;
 
